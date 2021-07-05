@@ -2,7 +2,7 @@ name: create_stg_pr
 
 on:
   workflow_run:
-    workflows: [test-mock]
+    workflows: [test-mock, test-mock2]
     branches:
       - master
     types:
