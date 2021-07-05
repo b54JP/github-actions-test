@@ -1,0 +1,14 @@
+# 本運用の時はtestが実行されるworkflowを想定
+name: test-mock
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo test
+    

@@ -1,16 +1,17 @@
 name: create_stg_pr
 
 on:
-  pull_request:
+  workflow_run:
+    workflows: [test-mock]
     branches:
       - master
-    types: [closed]
+    types:
+      - completed
   workflow_dispatch:
 
 jobs:
   pr:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == true
     steps:
       - uses: actions/checkout@v2
         with:
@@ -21,3 +22,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GIT_PR_RELEASE_BRANCH_PRODUCTION: staging
           GIT_PR_RELEASE_BRANCH_STAGING: master
+          # automergeアクションでこのラベルがついているものがマージされる
+          GIT_PR_RELEASE_LABELS: automerge
