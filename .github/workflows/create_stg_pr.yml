@@ -12,7 +12,7 @@ on:
 jobs:
   pr:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == true || github.event.workflow_dispatch == true
+    if: github.event.pull_request.merged == true
     steps:
       - uses: actions/checkout@v2
         with:
