@@ -1,10 +1,12 @@
 name: create_stg_pr
 
 on:
-  pull_request:
+  workflow_run:
+    workflows: [test-mock]
     branches:
       - master
-    types: [closed]
+    types:
+      - completed
   workflow_dispatch:
 
 jobs:
