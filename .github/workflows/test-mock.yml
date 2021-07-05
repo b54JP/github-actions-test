@@ -4,7 +4,7 @@ name: test-mock
 on:
   pull_request:
     branches: 
-      - master
+      - staging
 
 jobs:
   test:
