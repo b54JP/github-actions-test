@@ -23,3 +23,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GIT_PR_RELEASE_BRANCH_PRODUCTION: staging
           GIT_PR_RELEASE_BRANCH_STAGING: master
+          GIT_PR_RELEASE_LABELS: auto merge
