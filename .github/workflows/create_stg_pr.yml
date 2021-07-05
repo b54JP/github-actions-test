@@ -5,7 +5,6 @@ on:
     branches:
       - master
     types: [closed]
-  workflow_dispatch:
 
 jobs:
   pr:
@@ -16,7 +15,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: git-pr-release
-        uses: bakunyo/git-pr-release-action@master
+        uses: bakunyo/git-pr-release-action@v1.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GIT_PR_RELEASE_BRANCH_PRODUCTION: staging

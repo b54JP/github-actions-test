@@ -1,0 +1,19 @@
+# 本運用の時はtestが実行されるworkflowを想定
+name: test-mock
+
+on:
+  push:
+    branches:
+      - master
+  workflow_run:
+    workflows: [create_stg_pr]
+    branch: staging
+    types:
+      - completed
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo test
+    
