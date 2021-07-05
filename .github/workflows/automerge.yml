@@ -2,7 +2,7 @@ name: auto-merge
 
 on:
   workflow_run:
-    workflows: [test-mock]
+    workflows: [create_stg_pr]
     branches:
       - master
     types:
