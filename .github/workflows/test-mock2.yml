@@ -1,0 +1,12 @@
+name: test-mock2
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: sleep 20; echo test2
