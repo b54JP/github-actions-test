@@ -2,13 +2,14 @@
 name: test-mock
 
 on:
-  push:
+  pull_request:
     branches:
       - master
+    types: [closed]
 
 jobs:
+  if: github.event.pull_request.merged == true
   test:
     runs-on: ubuntu-latest
     steps:
       - run: echo test
-    

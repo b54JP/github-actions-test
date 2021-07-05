@@ -11,14 +11,12 @@ on:
 jobs:
   pr:
     runs-on: ubuntu-latest
-    #if: github.event.pull_request.merged == true
     steps:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
       - run: echo ${{ github.event.pull_request.merged }}
       - name: git-pr-release
-        if: github.event.pull_request.merged == true
         uses: bakunyo/git-pr-release-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
