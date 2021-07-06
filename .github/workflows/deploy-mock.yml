@@ -1,0 +1,21 @@
+name: deploy-mock
+
+on:
+  pull_request:
+    branches:
+      - production
+    types: [closed]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - id: git-hash
+        run: |
+          echo "::set-output name=LATEST_HASH::$(git rev-parse --short origin/staging)"
+      - run: echo ${{ steps.git-hash.outputs.LATEST_HASH }}
