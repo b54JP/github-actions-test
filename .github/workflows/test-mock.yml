@@ -10,4 +10,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - run: echo test
+      - uses: actions/checkout@v2
+      - id: git-hash
+        run: echo "::set-output name=LATEST_HASH::$(git rev-parse --short HEAD)"
+      - run: echo ${{ steps.git-hash.outputs.LATEST_HASH }}
