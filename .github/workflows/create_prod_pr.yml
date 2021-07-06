@@ -1,4 +1,4 @@
-name: create_stg_pr
+name: create_prod_pr
 
 on:
   workflow_run:
