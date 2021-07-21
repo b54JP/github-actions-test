@@ -1,0 +1,17 @@
+name: date
+
+on:
+  workflow_dispatch:
+
+jobs:
+  date:
+    runs-on: ubuntu-latest
+    steps:
+      - id: holiday-check
+        env:
+          TZ: 'Asia/Tokyo'
+        run: |
+          date
+          curl -o holiday.csv https://www8.cao.go.jp/chosei/shukujitsu/syukujitsu.csv
+          cat holiday.csv | grep -q $(date "+%Y/%-m/%-d") && IS_HOLIDAY=$(echo 1)
+          echo "::set-output name=is_holiday::$IS_HOLIDAY"
