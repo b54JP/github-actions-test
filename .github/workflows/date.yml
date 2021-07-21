@@ -21,6 +21,6 @@ jobs:
   coverage:
     runs-on: ubuntu-latest
     needs: holiday_check
-    if: needs.holiday_check.outputs.is_holiday != 1
+    if: needs.holiday_check.outputs.is_holiday == 1
     steps:
       - run: echo ${{needs.holiday_check.outputs.is_holiday}}
