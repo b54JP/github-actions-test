@@ -1,11 +1,10 @@
-name: deploy-mock
+name: deploy-mock-prod
 
 on:
   pull_request:
     branches:
       - production
     types: [closed]
-  workflow_dispatch:
 
 jobs:
   deploy:
