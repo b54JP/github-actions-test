@@ -3,12 +3,15 @@ name: deploy-mock-stg
 on:
   workflow_run:
     workflows: [create_prod_pr]
+    branches:
+      - master
     types:
       - completed
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - uses: actions/checkout@v2
         with:
