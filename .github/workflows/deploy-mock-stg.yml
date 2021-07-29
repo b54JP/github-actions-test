@@ -1,16 +1,14 @@
-name: deploy-mock
+name: deploy-mock-stg
 
 on:
-  pull_request:
-    branches:
-      - production
-    types: [closed]
-  workflow_dispatch:
+  workflow_run:
+    workflows: [create_prod_pr]
+    types:
+      - completed
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == true
     steps:
       - uses: actions/checkout@v2
         with:

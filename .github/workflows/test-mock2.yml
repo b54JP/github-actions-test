@@ -9,4 +9,4 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - run: sleep 20; echo test2
+      - run: echo test2

@@ -1,0 +1,26 @@
+name: date
+
+on:
+  workflow_dispatch:
+
+jobs:
+  holiday_check:
+    runs-on: ubuntu-latest
+    outputs:
+      is_holiday: ${{ steps.holiday-check.outputs.is_holiday }}
+    steps:
+      # 祝日だったらカバレッジ計測しない
+      - id: holiday-check
+        env:
+          TZ: 'Asia/Tokyo'
+        run: |
+          curl -o holiday.csv https://www8.cao.go.jp/chosei/shukujitsu/syukujitsu.csv
+          cat holiday.csv | grep -q $(date "+%Y/%-m/%-d") && IS_HOLIDAY=$(echo 1)
+          echo "::set-output name=is_holiday::$IS_HOLIDAY"
+
+  coverage:
+    runs-on: ubuntu-latest
+    needs: holiday_check
+    if: needs.holiday_check.outputs.is_holiday == 1
+    steps:
+      - run: echo ${{needs.holiday_check.outputs.is_holiday}}
