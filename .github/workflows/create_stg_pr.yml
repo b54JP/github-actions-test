@@ -27,8 +27,8 @@ jobs:
           timeout: 1
           
       # action-workflow-run-waitがtimeoutになった時の失敗はslack通知したくないので判定フラグ
-      - if: failure() && steps.wait.outcome == 'failure'
-        run: exit 0
+      - id: is_workflow_timeout_check
+        run: echo "::set-output name=IS_TIMEOUT::0"
 
       - name: git-pr-release
         uses: bakunyo/git-pr-release-action@master
@@ -39,5 +39,5 @@ jobs:
           # automergeアクションでこのラベルがついているものがマージされる
           GIT_PR_RELEASE_LABELS: automerge
 
-      - if: failure()
+      - if: steps.is_workflow_timeout_check.outputs.IS_TIMEOUT == 0 && failure()
         run: echo 1
