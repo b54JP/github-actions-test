@@ -8,7 +8,7 @@ on:
   workflow_run:
     workflows: [create_prod_pr]
     branches:
-      - staging
+      - master
     types:
       - completed
   workflow_dispatch:
