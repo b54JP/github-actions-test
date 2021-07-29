@@ -38,3 +38,6 @@ jobs:
           GIT_PR_RELEASE_BRANCH_STAGING: master
           # automergeアクションでこのラベルがついているものがマージされる
           GIT_PR_RELEASE_LABELS: automerge
+
+      - if: failure()
+        run: echo 1
