@@ -15,14 +15,12 @@ jobs:
     outputs:
       ENABLE_BUILD: ${{ steps.changes.outputs.server }}
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
+      - uses: actions/checkout@v2ß
       - uses: dorny/paths-filter@v2
         id: changes
         with:
           # https://github.com/dorny/paths-filter#usage
-          # base: ${{ github.ref }}
+          base: staging
           filters: |
             server:
               - './server/**/*'
