@@ -1,0 +1,11 @@
+name: pull_req
+
+on:
+  pull_request:
+
+jobs:
+  pull_req:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.head.ref != 'master' && github.event.pull_request.head.ref != 'staging' 
+    steps:
+      - run: echo 1
