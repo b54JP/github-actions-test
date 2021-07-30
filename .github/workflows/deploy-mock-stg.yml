@@ -15,7 +15,7 @@ jobs:
     outputs:
       ENABLE_BUILD: ${{ steps.changes.outputs.server }}
     steps:
-      - uses: actions/checkout@v2ß
+      - uses: actions/checkout@v2
       - uses: dorny/paths-filter@v2
         id: changes
         with:
