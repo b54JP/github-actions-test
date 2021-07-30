@@ -25,6 +25,7 @@ jobs:
               - 'server/**'
   test:
     if: needs.enable-build.outputs.ENABLE_BUILD == 'true'
+    needs: enable-build
     runs-on: ubuntu-latest
     steps:
       - run: echo test
