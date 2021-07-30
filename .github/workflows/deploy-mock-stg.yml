@@ -27,6 +27,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     if: needs.enable-build.outputs.ENABLE_BUILD == 'true'
+    needs: enable-build
     steps:
       - uses: actions/checkout@v2
         with:
