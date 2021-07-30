@@ -5,9 +5,26 @@ on:
   push:
     branches:
       - master
+      - 'feature/*'
 
 jobs:
+  enable-build:
+    runs-on: ubuntu-latest
+    # if: github.event.workflow_run.conclusion == 'success'
+    outputs:
+      ENABLE_BUILD: ${{ steps.changes.outputs.server }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          # https://github.com/dorny/paths-filter#usage
+          base: ${{ github.ref }}
+          filters: |
+            server:
+              - 'server/**'
   test:
+    if: needs.enable-build.outputs.ENABLE_BUILD == 'true'
     runs-on: ubuntu-latest
     steps:
       - run: echo test
