@@ -22,7 +22,7 @@ jobs:
           base: ${{ github.ref }}
           filters: |
             server:
-              - 'server/**'
+              - './server/**/*'
   test:
     if: needs.enable-build.outputs.ENABLE_BUILD == 'true'
     needs: enable-build
