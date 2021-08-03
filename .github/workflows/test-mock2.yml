@@ -22,7 +22,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     needs: is-run-test
-    if: needs.test.outputs.TEST == 'true'
+    if: needs.is-run-test.outputs.TEST == 'true'
     outputs:
       NOTICE_SLACK: ${{ steps.notice-slack.outputs.NOTICE_SLACK }}
     steps:
