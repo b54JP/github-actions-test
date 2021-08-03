@@ -26,7 +26,7 @@ jobs:
     outputs:
       NOTICE_SLACK: ${{ steps.notice-slack.outputs.NOTICE_SLACK }}
     steps:
-      - uses: rokroskar/workflow-run-cleanup-action
+      - uses: rokroskar/workflow-run-cleanup-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEBUG: FALSE
