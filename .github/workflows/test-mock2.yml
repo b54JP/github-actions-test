@@ -13,7 +13,7 @@ jobs:
       NOTICE_SLACK: ${{ steps.notice-slack.outputs.NOTICE_SLACK }}
     steps:
       - id: notice-slack
-        run: echo "::set-output name=NOTICE_SLACK::true"
+        run: echo "::set-output name=NOTICE_SLACK::false"
 
   slack-mock:
     runs-on: ubuntu-latest
