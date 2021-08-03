@@ -17,11 +17,15 @@ jobs:
       TEST: ${{ steps.test.outputs.TEST }}
     steps:
       - id: test
+        if: github.event_name == 'push'
+        run: echo "::set-output name=NOTICE_SLACK::true"
+      - id: test
+        if: github.event_name == 'pull_request'
         run: echo "::set-output name=NOTICE_SLACK::true"
   test:
     runs-on: ubuntu-latest
     needs: is-run-test
-    if: needs.test.outputs.TEST == 'false' || github.event_name == 'pull_request'
+    if: needs.test.outputs.TEST == 'false'
     outputs:
       NOTICE_SLACK: ${{ steps.notice-slack.outputs.NOTICE_SLACK }}
     steps:
