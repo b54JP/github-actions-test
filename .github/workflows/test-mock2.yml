@@ -32,11 +32,11 @@ jobs:
           DEBUG: FALSE
       - id: notice-slack
         run: echo "::set-output name=NOTICE_SLACK::true"
-      - run: exit 1
+      - run: sleep 60; exit 1
 
   slack-mock:
     runs-on: ubuntu-latest
     needs: test
     if: needs.test.outputs.NOTICE_SLACK == 'true' && always()
     steps:
-      - run: sleep 60; echo 1
+      - run: echo 1
