@@ -39,4 +39,6 @@ jobs:
     needs: test
     if: needs.test.outputs.NOTICE_SLACK == 'true' && always()
     steps:
+      - uses: technote-space/workflow-conclusion-action@v1
       - run: echo 1
+        if: env.WORKFLOW_CONCLUSION == 'failure'
