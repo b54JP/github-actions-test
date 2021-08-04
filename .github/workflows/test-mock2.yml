@@ -40,3 +40,4 @@ jobs:
         with:
           name: commit-hash
           path: hash.txt
+
