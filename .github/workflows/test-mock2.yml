@@ -32,6 +32,14 @@ jobs:
           DEBUG: FALSE
       - id: notice-slack
         run: echo "::set-output name=NOTICE_SLACK::true"
+      - run: echo $(git rev-parse --short origin/master) > hash.txt
+      - uses: actions/upload-artifact@v2
+        with:
+          name: commit-hash
+          path: hash.txt
+      - name: Download artifact
+        uses: dawidd6/action-download-artifact@v2
+        workflow: test-mock2.yml
 
   slack-mock:
     runs-on: ubuntu-latest
