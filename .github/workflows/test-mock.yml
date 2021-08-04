@@ -16,3 +16,4 @@ jobs:
         with:
           workflow: test-mock2.yml
           name: commit-hash
+          branch: master
