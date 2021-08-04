@@ -17,3 +17,4 @@ jobs:
         with:
           workflow: test-mock2.yml
           workflow_conclusion: success 
+          branch: feature/13
