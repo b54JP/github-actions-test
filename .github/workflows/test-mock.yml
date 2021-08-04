@@ -15,7 +15,4 @@ jobs:
       - name: Download artifact
         uses: dawidd6/action-download-artifact@v2
         with:
-          github_token: ${{secrets.GITHUB_TOKEN}}
           workflow: test-mock2.yml
-          name: commit-hash
-          run_id: 1097141050
