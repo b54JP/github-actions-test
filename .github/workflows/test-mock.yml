@@ -18,4 +18,4 @@ jobs:
           github_token: ${{secrets.GITHUB_TOKEN}}
           workflow: test-mock2.yml
           name: commit-hash
-          branch: master
+          run_id: 1097141050

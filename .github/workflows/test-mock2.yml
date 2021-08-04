@@ -40,7 +40,6 @@ jobs:
         with:
           name: commit-hash
           path: hash.txt
-      - run: echo ${{ github.run_id }}
 
   slack-mock:
     runs-on: ubuntu-latest
