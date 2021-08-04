@@ -13,7 +13,14 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: automerge
         uses: pascalgn/automerge-action@v0.14.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - id: git-hash
+        run: |
+          echo "::set-output name=LATEST_HASH::$(git rev-parse --short origin/staging)"
+      - run: echo ${{ steps.git-hash.outputs.LATEST_HASH }}
