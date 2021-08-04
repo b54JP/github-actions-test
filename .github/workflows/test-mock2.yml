@@ -32,7 +32,6 @@ jobs:
           DEBUG: FALSE
       - id: notice-slack
         run: echo "::set-output name=NOTICE_SLACK::true"
-      - run: sleep 60; exit 1
 
   slack-mock:
     runs-on: ubuntu-latest
