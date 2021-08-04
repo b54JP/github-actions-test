@@ -40,11 +40,6 @@ jobs:
         with:
           name: commit-hash
           path: hash.txt
-      - name: Download artifact
-        uses: dawidd6/action-download-artifact@v2
-        with:
-          workflow: test-mock2.yml
-          name: commit-hash
 
   slack-mock:
     runs-on: ubuntu-latest
