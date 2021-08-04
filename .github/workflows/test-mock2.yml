@@ -39,7 +39,8 @@ jobs:
           path: hash.txt
       - name: Download artifact
         uses: dawidd6/action-download-artifact@v2
-        workflow: test-mock2.yml
+        with:
+          workflow: test-mock2.yml
 
   slack-mock:
     runs-on: ubuntu-latest
