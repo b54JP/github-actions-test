@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - master
+      - 'feature/*'
 
 jobs:
   test:
@@ -15,5 +16,5 @@ jobs:
         uses: dawidd6/action-download-artifact@v2
         with:
           workflow: test-mock2.yml
-          name: commit-hash
+          workflow_conclusion: success 
           branch: master
