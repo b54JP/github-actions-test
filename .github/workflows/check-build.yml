@@ -3,6 +3,7 @@ name: check-build
 on:
   pull_request:
     branches:
+      - 'feature/*'
       - 'master'
       - 'staging'
     paths:
