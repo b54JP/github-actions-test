@@ -4,9 +4,8 @@ on:
   push:
     branches:
       - 'master'
-      - 'staging'
-    # paths:
-    #   - './server/*'
+    paths:
+      - './server/*'
 
 jobs:
   is-build-target:
