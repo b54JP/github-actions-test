@@ -3,7 +3,6 @@ name: check-build
 on:
   push:
     branches:
-      - 'feature/*'
       - 'master'
     paths:
       - 'server/**/*.txt'
