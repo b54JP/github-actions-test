@@ -1,9 +1,6 @@
 name: test-mock2
 
 on:
-  push:
-    branches:
-      - 'feature/*'
   workflow_run:
     workflows: [check-build]
     branches:
