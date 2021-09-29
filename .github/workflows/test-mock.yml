@@ -2,10 +2,13 @@
 name: test-mock
 
 on:
-  push:
+  workflow_run:
+    workflows: [check-build]
     branches:
       - master
-      - 'feature/*'
+      - staging
+    types:
+      - completed
 
 jobs:
   test:

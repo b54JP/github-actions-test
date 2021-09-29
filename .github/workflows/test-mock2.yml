@@ -1,13 +1,13 @@
 name: test-mock2
 
 on:
-  push:
+  workflow_run:
+    workflows: [check-build]
     branches:
       - master
-      - 'feature/*'
-  pull_request:
-    branches:
-      - feature/*
+      - staging
+    types:
+      - completed
 
 jobs:
   is-run-test:
