@@ -6,7 +6,7 @@ on:
       - 'feature/*'
       - 'master'
     paths:
-      - '*.json'
+      - 'server/**/*.txt'
 
 jobs:
   is-build-target:
