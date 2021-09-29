@@ -1,0 +1,14 @@
+name: check-build
+
+on:
+  push:
+    branches:
+      - 'master'
+      - 'staging'
+    paths:
+      - './server/*'
+jobs:
+  is-build-target:
+    runs-on: ubuntu-latest
+    steps:
+      - run: exit 0
