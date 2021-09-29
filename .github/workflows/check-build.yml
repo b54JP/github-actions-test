@@ -3,10 +3,9 @@ name: check-build
 on:
   push:
     branches:
-      - 'feature/*'
       - 'master'
     paths:
-      - './server/**/*.txt'
+      - 'server/**/*.txt'
 
 jobs:
   is-build-target:
