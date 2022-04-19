@@ -15,9 +15,3 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo test
-      - name: Download artifact
-        uses: dawidd6/action-download-artifact@v2
-        with:
-          workflow: test-mock2.yml
-          workflow_conclusion: success 
-          branch: master
