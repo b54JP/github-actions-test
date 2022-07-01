@@ -18,6 +18,8 @@ jobs:
       TEST: ${{ steps.status_run_push.outputs.TEST }}
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - id: test
         run: |
           git log -m -1 --name-only
