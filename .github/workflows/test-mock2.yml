@@ -14,7 +14,17 @@ jobs:
     # https://docs.github.com/ja/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
     runs-on: ubuntu-latest
     outputs:
-      TEST: ${{ steps.test.outputs.TEST }}
+      RUN_PUSH_STATIC: ${{ steps.status_run_push.outputs.RUN_PUSH_STATIC }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          # https://github.com/dorny/paths-filter#usage
+          base: ${{ github.ref }}
+          filters: |
+            server:
+              - './server/**'
     steps:
       - id: test
         if: github.event_name == 'push'
