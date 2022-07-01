@@ -17,14 +17,6 @@ jobs:
       TEST: ${{ steps.status_run_push.outputs.TEST }}
     steps:
       - uses: actions/checkout@v2
-      - uses: dorny/paths-filter@v2
-        id: changes
-        with:
-          # https://github.com/dorny/paths-filter#usage
-          base: ${{ github.ref }}
-          filters: |
-            server:
-              - './server/**'
       - id: test
         if: github.event_name == 'push'
         run:
