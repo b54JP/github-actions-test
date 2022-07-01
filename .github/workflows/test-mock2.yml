@@ -8,6 +8,7 @@ on:
       - staging
     types:
       - completed
+  workflow_dispatch:
 
 jobs:
   is-run-test:
@@ -18,8 +19,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - id: test
-        run:
-          run_push=`$(git log -m -1 --name-only | grep "server/*" -c);`
+        run: |
+          git log -m -1 --name-only
 #           echo "::set-output name=TEST::$run_push"
   test:
     runs-on: ubuntu-latest
