@@ -22,7 +22,7 @@ jobs:
           fetch-depth: 0
       - id: test
         run: |
-          git log -m -1 --name-only | grep "server/*" -c
+          run_push=`git log -m -1 --name-only | grep "server/*" -c; echo $?`
 #           echo "::set-output name=TEST::$run_push"
   test:
     runs-on: ubuntu-latest
