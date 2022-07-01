@@ -18,7 +18,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - id: test
-        if: github.event_name == 'push'
         run:
           run_push=`$(git log -m -1 --name-only | grep "server/*" -c);`
           echo "::set-output name=TEST::$run_push"
