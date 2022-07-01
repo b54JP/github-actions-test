@@ -25,10 +25,11 @@ jobs:
           filters: |
             server:
               - './server/**'
-    steps:
       - id: test
         if: github.event_name == 'push'
-        run: echo "::set-output name=TEST::true"
+        run: 
+          run_push=`"${{ steps.changes.outputs.frontend }}" = "true"; echo $?`
+          echo "::set-output name=TEST::$run_push"
   test:
     runs-on: ubuntu-latest
     needs: is-run-test
