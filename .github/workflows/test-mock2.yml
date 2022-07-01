@@ -23,7 +23,7 @@ jobs:
       - id: test
         run: |
           run_push=`git log -m -1 --name-only | grep "server/*" -c; echo $?`
-#           echo "::set-output name=TEST::$run_push"
+          echo "::set-output name=TEST::$run_push"
   test:
     runs-on: ubuntu-latest
     needs: is-run-test
