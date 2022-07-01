@@ -15,7 +15,7 @@ jobs:
     # https://docs.github.com/ja/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
     runs-on: ubuntu-latest
     outputs:
-      TEST: ${{ steps.status_run_push.outputs.TEST }}
+      TEST: ${{ steps.test.outputs.TEST }}
     steps:
       - uses: actions/checkout@v2
         with:
@@ -31,6 +31,7 @@ jobs:
     outputs:
       NOTICE_SLACK: ${{ steps.notice-slack.outputs.NOTICE_SLACK }}
     steps:
+      - run: echo {{ needs.is-run-test.outputs.TEST }}
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
