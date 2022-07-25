@@ -1,0 +1,14 @@
+name: check-build
+
+on:
+  push:
+    branches:
+      - 'master'
+    paths:
+      - 'server/**/*.txt'
+
+jobs:
+  is-build-target:
+    runs-on: ubuntu-latest
+    steps:
+      - run: exit 0

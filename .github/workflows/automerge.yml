@@ -5,16 +5,24 @@ on:
     workflows: [create_stg_pr]
     branches:
       - master
-    types:
-      - completed
+    types: [completed]
 
 jobs:
   automerge:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
+      - run: |
+          echo ${{ github.event.workflow_run.conclusion }}
+          echo ${{ github.event.workflow_run.id }}
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: automerge
         uses: pascalgn/automerge-action@v0.14.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          MERGE_METHOD: rebase
+      - id: git-hash
+        run: |
+          echo "::set-output name=LATEST_HASH::$(git rev-parse --short origin/staging)"
+      - run: echo ${{ steps.git-hash.outputs.LATEST_HASH }}
