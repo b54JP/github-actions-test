@@ -5,13 +5,12 @@ on:
     workflows: [create_stg_pr]
     branches:
       - master
-    types:
-      - completed
+    types: [completed]
 
 jobs:
   automerge:
     runs-on: ubuntu-latest
-    # if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - run: |
           echo ${{ github.event.workflow_run.conclusion }}
