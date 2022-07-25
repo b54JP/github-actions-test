@@ -14,7 +14,7 @@ jobs:
     # if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - run: |
-        echo ${{ github.event.workflow_run.conclusion == 'success' }}
+          echo ${{ github.event.workflow_run.conclusion }}
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
