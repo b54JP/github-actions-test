@@ -13,6 +13,7 @@ jobs:
   pr:
     runs-on: ubuntu-latest
     steps:
+      - run: echo ${{ github.event.workflow_run.name }}
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
