@@ -2,10 +2,12 @@ name: auto-merge
 
 on:
   workflow_run:
-    workflows: [create_stg_pr]
+    workflows:
+      - create_stg_pr
     branches:
       - master
-    types: [completed]
+    types: 
+      - completed
 
 jobs:
   automerge:
