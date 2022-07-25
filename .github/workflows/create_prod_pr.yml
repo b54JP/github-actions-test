@@ -3,15 +3,13 @@ name: create_prod_pr
 on:
   workflow_run:
     workflows: [auto-merge]
-    branches:
-      - master
     types:
       - completed
 
 jobs:
   pr:
     runs-on: ubuntu-latest
-    if: github.event.workflow_run.conclusion == 'success'
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - uses: actions/checkout@v2
         with:

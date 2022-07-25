@@ -31,7 +31,7 @@ jobs:
     outputs:
       NOTICE_SLACK: ${{ steps.notice-slack.outputs.NOTICE_SLACK }}
     steps:
-      - run: sleep 30
+      - run: sleep 60
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
