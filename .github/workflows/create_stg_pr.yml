@@ -19,29 +19,23 @@ jobs:
         with:
           fetch-depth: 0
           
-      # action-workflow-run-waitがtimeoutになった時の失敗はslack通知したくないので判定フラグ
-      - id: is_workflow_timeout_check
-        run: echo "::set-output name=IS_NOT_TIMEOUT::1"
-
+      # https://github.com/marketplace/actions/create-pull-request
       - name: git-pr-release
-        uses: bakunyo/git-pr-release-action@281e1fe424fac01f3992542266805e4202a22fe0
+        id: create_pull_request
+        uses: peter-evans/create-pull-request@v4
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GIT_PR_RELEASE_BRANCH_PRODUCTION: staging
-          GIT_PR_RELEASE_BRANCH_STAGING: master
-          # automergeアクションでこのラベルがついているものがマージされる
-          GIT_PR_RELEASE_LABELS: automerge
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: master
+          base: staging
+          labels: automerge
 
-      - name: automerge
-        uses: pascalgn/automerge-action@v0.14.2
+      - name: auto merge pull request
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh pr merge ${{ steps.create_pull_request.outputs.pull-request-url }}
 
       - id: git-hash
         run: |
           echo "::set-output name=LATEST_HASH::$(git rev-parse --short origin/staging)"
   
       - run: echo ${{ steps.git-hash.outputs.LATEST_HASH }}
-
-      - if: steps.is_workflow_timeout_check.outputs.IS_NOT_TIMEOUT == '1' && failure()
-        run: echo 1
