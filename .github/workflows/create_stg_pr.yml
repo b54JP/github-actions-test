@@ -1,31 +1,23 @@
 name: create_stg_pr
 
 on:
-  workflow_run:
-    workflows: [test-mock, test-mock2]
-    branches:
-      - master
-    types:
-      - completed
+  workflow_call:
+  # workflow_run:
+  #   workflows: [test-mock, test-mock2]
+  #   branches:
+  #     - master
+  #   types:
+  #     - completed
   workflow_dispatch:
 
 jobs:
   pr:
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ github.event.workflow_run.name }}
+      # - run: echo ${{ github.event.workflow_run.name }}
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-            # test-php,test-js両方が完了していないと動かないようにするaction
-
-      - id: wait
-        uses: ahmadnassri/action-workflow-run-wait@v1
-        with:
-          # https://github.com/ahmadnassri/action-workflow-run-wait/tree/v1.4.4
-          # 両方終了してないと続けたくない=最初に終了したワークフローの場合は即終了でいいのでtimeoutを1ミリ秒にする
-          # 最後に終了したワークフローから発火するときは正常に動く
-          timeout: 1
           
       # action-workflow-run-waitがtimeoutになった時の失敗はslack通知したくないので判定フラグ
       - id: is_workflow_timeout_check
@@ -39,6 +31,17 @@ jobs:
           GIT_PR_RELEASE_BRANCH_STAGING: master
           # automergeアクションでこのラベルがついているものがマージされる
           GIT_PR_RELEASE_LABELS: automerge
+
+      - name: automerge
+        uses: pascalgn/automerge-action@v0.14.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - id: git-hash
+        run: |
+          echo "::set-output name=LATEST_HASH::$(git rev-parse --short origin/staging)"
+  
+      - run: echo ${{ steps.git-hash.outputs.LATEST_HASH }}
 
       - if: steps.is_workflow_timeout_check.outputs.IS_NOT_TIMEOUT == '1' && failure()
         run: echo 1

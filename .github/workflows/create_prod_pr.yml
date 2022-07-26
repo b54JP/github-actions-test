@@ -1,19 +1,12 @@
 name: create_prod_pr
 
 on:
-  workflow_run:
-    workflows: [auto-merge]
-    types:
-      - completed
+  workflow_call:
 
 jobs:
   pr:
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
       - name: git-pr-release
         uses: bakunyo/git-pr-release-action@master
         env:

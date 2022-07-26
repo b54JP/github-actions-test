@@ -1,13 +1,7 @@
 name: test-mock2
 
 on:
-  workflow_run:
-    workflows: [check-build]
-    branches:
-      - master
-      - staging
-    types:
-      - completed
+  workflow_call:
   workflow_dispatch:
 
 jobs:
