@@ -12,9 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # - run: echo ${{ github.event.workflow_run.name }}
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
+      - uses: actions/checkout@v3
   test1:
     uses: b54JP/test-github-actions/.github/workflows/test-mock.yml@master
     needs: setup
