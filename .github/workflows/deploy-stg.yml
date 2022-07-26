@@ -16,13 +16,13 @@ jobs:
         with:
           fetch-depth: 0
   test1:
-    uses: b54JP/test-github-actions/blob/master/.github/workflows/test-mock.yml@master
+    uses: b54JP/test-github-actions/.github/workflows/test-mock.yml@master
     needs: setup
 
   test2:
-    uses: b54JP/test-github-actions/blob/master/.github/workflows/test-mock2.yml@master
+    uses: b54JP/test-github-actions/.github/workflows/test-mock2.yml@master
     needs: setup
 
   merge:
-    uses: b54JP/test-github-actions/blob/master/.github/workflows/create_stg_pr.yml@master
+    uses: b54JP/test-github-actions/.github/workflows/create_stg_pr.yml@master
     needs: [test1, test2]
