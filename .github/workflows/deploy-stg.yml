@@ -23,6 +23,7 @@ jobs:
     needs: pr-stg
 
   deploy-stg:
+    runs-on: ubuntu-latest
     needs: pr-stg
     steps:
       - run: echo 1
