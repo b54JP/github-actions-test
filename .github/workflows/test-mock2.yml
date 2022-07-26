@@ -11,9 +11,7 @@ jobs:
     outputs:
       TEST: ${{ steps.test.outputs.TEST }}
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
+      - uses: actions/checkout@v3
       - id: test
         run: |
           run_push=`git log -m -1 --name-only | grep "server/*" -c;`
