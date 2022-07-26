@@ -25,14 +25,9 @@ jobs:
     outputs:
       NOTICE_SLACK: ${{ steps.notice-slack.outputs.NOTICE_SLACK }}
     steps:
-      - run: sleep 5
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - uses: rokroskar/workflow-run-cleanup-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DEBUG: FALSE
       - id: notice-slack
         run: echo "::set-output name=NOTICE_SLACK::true"
       - run: echo $(git rev-parse --short origin/master) > hash.txt
