@@ -13,6 +13,8 @@ jobs:
     steps:
       # - run: echo ${{ github.event.workflow_run.name }}
       - uses: actions/checkout@v3
+        with:
+          ref: master
   # test1:
   #   uses: b54JP/test-github-actions/.github/workflows/test-mock.yml@master
   #   needs: setup
