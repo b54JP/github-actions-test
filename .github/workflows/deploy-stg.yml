@@ -38,12 +38,10 @@ jobs:
       # Slack 通知用(成功時)
       - name: Slack Notification Success
         if: needs.deploy-stg.outputs.NOTICE_SLACK == 'true' && env.WORKFLOW_CONCLUSION == 'success'
-        steps:
-          - run: echo 'success'
+        run: echo 'success'
 
       # Slack 通知用(失敗時)
       - name: Slack Notification Failure
         if: env.WORKFLOW_CONCLUSION == 'failure'
-        steps:
-          - run: echo 'failure'
+        run: echo 'failure'
       
