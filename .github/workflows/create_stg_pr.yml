@@ -17,22 +17,19 @@ jobs:
       # - run: echo ${{ github.event.workflow_run.name }}
       - uses: actions/checkout@v3
         with:
-          ref: master
+          fetch-depth: 0
           
-      # https://github.com/marketplace/actions/create-pull-request
       - name: git-pr-release
-        id: create_pull_request
-        uses: peter-evans/create-pull-request@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          branch: master
-          base: staging
-          labels: automerge
+        uses: bakunyo/git-pr-release-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GIT_PR_RELEASE_BRANCH_PRODUCTION: staging
+          GIT_PR_RELEASE_BRANCH_STAGING: master
 
       - name: auto merge pull request
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh pr merge ${{ steps.create_pull_request.outputs.pull-request-number }} --merge
+        run: gh pr merge master --merge
 
       - id: git-hash
         run: |

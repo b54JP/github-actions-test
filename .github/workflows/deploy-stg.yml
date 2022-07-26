@@ -14,16 +14,15 @@ jobs:
       # - run: echo ${{ github.event.workflow_run.name }}
       - uses: actions/checkout@v3
         with:
-          ref: master
-  # test1:
-  #   uses: b54JP/test-github-actions/.github/workflows/test-mock.yml@master
-  #   needs: setup
+          fetch-depth: 0
+  test1:
+    uses: b54JP/test-github-actions/.github/workflows/test-mock.yml@master
+    needs: setup
 
-  # test2:
-  #   uses: b54JP/test-github-actions/.github/workflows/test-mock2.yml@master
-  #   needs: setup
+  test2:
+    uses: b54JP/test-github-actions/.github/workflows/test-mock2.yml@master
+    needs: setup
 
   merge:
     uses: b54JP/test-github-actions/.github/workflows/create_stg_pr.yml@master
-    # needs: [test1, test2]
-    needs: setup
+    needs: [test1, test2]
