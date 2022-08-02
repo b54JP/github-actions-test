@@ -28,7 +28,7 @@ jobs:
           fetch-depth: 0
       - id: notice-slack
         run: echo "::set-output name=NOTICE_SLACK::true"
-        if: "!contains(git log --pretty=oneline --abbrev-commit, '[skip test]')"
+        if: "!contains($(git log --pretty=oneline --abbrev-commit), '[skip test]')"
       - run: echo $(git rev-parse --short origin/master) > hash.txt
       - uses: actions/upload-artifact@v2
         with:
