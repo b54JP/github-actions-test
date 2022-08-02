@@ -27,7 +27,7 @@ jobs:
       - id: commit-message
         run: |
           echo "::set-output name=COMMIT_MESSAGE::$(git log -1 --pretty=%B --abbrev-commit)"
-        if: "!contains(step.commit-message.outputs.COMMIT_MESSAGE, '[skip test]')"
+        if: "!contains(steps.commit-message.outputs.COMMIT_MESSAGE, '[skip test]')"
       - run: echo $(git rev-parse --short origin/master) > hash.txt
       - uses: actions/upload-artifact@v2
         with:
