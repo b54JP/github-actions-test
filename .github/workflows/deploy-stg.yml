@@ -10,7 +10,6 @@ on:
 jobs:
   test1:
     uses: b54JP/test-github-actions/.github/workflows/test-mock.yml@master
-    if: false
 
   test2:
     uses: b54JP/test-github-actions/.github/workflows/test-mock2.yml@master
