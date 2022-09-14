@@ -4,6 +4,9 @@ name: test-mock
 on:
   workflow_call:
 
+env:
+  AWS_ROLE_ARN: ${{ secrets.AWS_ROLE_ARN }}
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -23,4 +26,4 @@ jobs:
 
       - name: Copy File To S3
         run: |
-          aws s3 cp ./server/aaa.txt s3://${env.BUCKET_NAME}/
+          aws s3 cp ./server/aaa.txt s3://${secrets.BUCKET_NAME}/
