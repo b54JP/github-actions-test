@@ -8,4 +8,16 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - run: echo test
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: ${{ env.AWS_ROLE_ARN }}
+          aws-region: 'ap-northeast-1'
+
+      - name: Copy File To S3
+        run: |
+          aws s3 cp ./server/aaa.txt s3://${env.BUCKET_NAME}/
