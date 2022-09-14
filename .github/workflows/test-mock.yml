@@ -1,11 +1,32 @@
 # 本運用の時はtestが実行されるworkflowを想定
 name: test-mock
 
+# on:
+#   workflow_call:
 on:
-  workflow_call:
+  push:
+    branches:
+
+env:
+  AWS_ROLE_ARN: ${{ secrets.AWS_ROLE_ARN }}
 
 jobs:
   test:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     steps:
-      - run: echo test
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: ${{ env.AWS_ROLE_ARN }}
+          aws-region: 'ap-northeast-1'
+
+      - name: Copy File To S3
+        run: |
+          aws s3 cp ./server/aaa.txt s3://${secrets.BUCKET_NAME}/
