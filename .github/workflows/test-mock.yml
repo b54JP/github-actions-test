@@ -29,4 +29,4 @@ jobs:
 
       - name: Copy File To S3
         run: |
-          aws s3 cp ./server/aaa.txt s3://${secrets.BUCKET_NAME}/
+          aws s3 cp ./server/aaa.txt s3://${{secrets.BUCKET_NAME}}/
