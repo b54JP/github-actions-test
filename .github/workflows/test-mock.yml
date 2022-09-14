@@ -1,8 +1,11 @@
 # 本運用の時はtestが実行されるworkflowを想定
 name: test-mock
 
+# on:
+#   workflow_call:
 on:
-  workflow_call:
+  push:
+    branches:
 
 env:
   AWS_ROLE_ARN: ${{ secrets.AWS_ROLE_ARN }}
