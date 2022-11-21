@@ -1,0 +1,19 @@
+name: sample
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  execute:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo
+        run: echo 'sampleです'
+      - name: Setup PHP 
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+      - name: Run command
+        run: |
+          phpdbg --version
