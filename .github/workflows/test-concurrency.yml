@@ -1,0 +1,21 @@
+
+name: test-concurrency
+
+on:
+  push:
+    branches:
+      - test_concurrency
+  workflow_dispatch:
+
+jobs:
+  exec:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          # 一瞬で終わると連続pushのテストにならないので
+          # sleep とループで時間を稼ぐ(数値は適当なので適宜調節可)
+          for CNT in `seq 30 -1 1`
+          do
+             echo $CNT
+             sleep 1
+          done
